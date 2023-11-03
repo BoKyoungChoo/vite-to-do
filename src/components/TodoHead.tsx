@@ -26,10 +26,10 @@ const TodoHeadBlock = styled.div`
   }
   .day {
     color: #bbb;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
   .tasks-left {
-    color: #3c77a1;
+    color: #20c997;
     font-size: 1.5rem;
     margin-top: 40px;
     font-weight: bold;
