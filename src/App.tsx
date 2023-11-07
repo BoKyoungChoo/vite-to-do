@@ -11,7 +11,7 @@ function App() {
         <TodoList />
         <TodoCreate />
       </TodoBox>
-      {/* https://react.vlpt.us/mashup-todolist/01-create-components.html */}
+      {/* https://react.vlpt.us/mashup-todolist/02-manage-state.html */}
     </>
   );
 }
