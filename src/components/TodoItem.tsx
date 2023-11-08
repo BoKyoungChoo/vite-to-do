@@ -2,15 +2,15 @@ import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
 
 type Props = {
-  done: boolean;
+  $done: boolean;
   text: string;
 };
 
-const TodoItem = ({ done, text }: Props) => {
+const TodoItem = ({ $done, text }: Props) => {
   return (
     <TodoItemBlock>
-      <CheckCircle done={done}>{done && <MdDone />}</CheckCircle>
-      <Text done={done}>{text}</Text>
+      <CheckCircle $done={$done}>{$done && <MdDone />}</CheckCircle>
+      <Text $done={$done}>{text}</Text>
       <Remove>
         <MdDelete />
       </Remove>
@@ -45,7 +45,7 @@ const TodoItemBlock = styled.div`
     }
   }
 `;
-const CheckCircle = styled.div<{ done: boolean }>`
+const CheckCircle = styled.div<{ $done: boolean }>`
   width: 2.4rem;
   height: 2.4rem;
   border-radius: 16px;
@@ -56,18 +56,18 @@ const CheckCircle = styled.div<{ done: boolean }>`
   margin-right: 1.5rem;
   cursor: pointer;
   ${(props) =>
-    props.done &&
+    props.$done &&
     css`
       border: 1px solid #38d9a9;
       color: #38d9a9;
     `}
 `;
-const Text = styled.div<{ done: boolean }>`
+const Text = styled.div<{ $done: boolean }>`
   flex: 1;
   font-size: 1.6rem;
   color: #495057;
   ${(props) =>
-    props.done &&
+    props.$done &&
     css`
       color: #ced4da;
     `}
