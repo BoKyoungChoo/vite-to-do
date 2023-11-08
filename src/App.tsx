@@ -19,5 +19,5 @@ function App() {
 export default App;
 
 {
-  /* https://react.vlpt.us/mashup-todolist/02-manage-state.html */
+  // https://react.vlpt.us/mashup-todolist/03-implement.html
 }
