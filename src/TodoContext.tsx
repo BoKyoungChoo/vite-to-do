@@ -1,4 +1,10 @@
-import { createContext, useReducer, Dispatch } from "react";
+import {
+  createContext,
+  useReducer,
+  Dispatch,
+  useRef,
+  MutableRefObject,
+} from "react";
 
 type StateProps = { id: number; text: string; done: boolean }[];
 type ActionProps =
@@ -29,8 +35,13 @@ const todoReducer = (state: StateProps, action: ActionProps) => {
   }
 };
 
-const TodoStateContext = createContext<StateProps | null>(null);
-const TodoDispatchContext = createContext<Dispatch<ActionProps> | null>(null);
+export const TodoStateContext = createContext<StateProps | null>(null);
+export const TodoDispatchContext = createContext<Dispatch<ActionProps> | null>(
+  null
+);
+export const TodoNextIdContext = createContext<MutableRefObject<number> | null>(
+  null
+);
 
 export const TodoProvider = ({
   children,
@@ -38,11 +49,14 @@ export const TodoProvider = ({
   children: React.ReactElement;
 }) => {
   const [state, dispatch] = useReducer(todoReducer, initialTodoList);
+  const nextId = useRef(5);
 
   return (
     <TodoStateContext.Provider value={state}>
       <TodoDispatchContext.Provider value={dispatch}>
-        {children}
+        <TodoNextIdContext.Provider value={nextId}>
+          {children}
+        </TodoNextIdContext.Provider>
       </TodoDispatchContext.Provider>
     </TodoStateContext.Provider>
   );

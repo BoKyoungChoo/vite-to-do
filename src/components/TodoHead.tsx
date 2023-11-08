@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import styled from "styled-components";
 
+import { TodoStateContext } from "../TodoContext";
+
 const TodoHead = () => {
+  const state = useContext(TodoStateContext);
+
   return (
     <TodoHeadBlock>
       <h1>
