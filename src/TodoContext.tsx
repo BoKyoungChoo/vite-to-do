@@ -7,7 +7,7 @@ type ActionProps =
   | { type: "REMOVE"; id: number }
   | { type: "" };
 
-const initialTodos = [
+const initialTodoList = [
   { id: 1, text: "todo 마무리하기", done: true },
   { id: 2, text: "비타민 C 챙겨먹기", done: true },
   { id: 3, text: "typescript 공부하기", done: true },
@@ -29,25 +29,21 @@ const todoReducer = (state: StateProps, action: ActionProps) => {
   }
 };
 
-// const TodoStateContext = createContext<StateProps | null>(null);
-// const TodoDispatchContext = createContext<Dispatch<ActionProps> | null>(null);
+const TodoStateContext = createContext<StateProps | null>(null);
+const TodoDispatchContext = createContext<Dispatch<ActionProps> | null>(null);
 
 export const TodoProvider = ({
   children,
 }: {
   children: React.ReactElement;
 }) => {
-  const [state, dispatch] = useReducer(todoReducer, initialTodos);
-  state;
-  dispatch;
+  const [state, dispatch] = useReducer(todoReducer, initialTodoList);
 
-  return children;
-
-  // return (
-  //   <TodoStateContext.Provider value={state}>
-  //     <TodoDispatchContext.Provider value={dispatch}>
-  //       {children}
-  //     </TodoDispatchContext.Provider>
-  //   </TodoStateContext.Provider>
-  // );
+  return (
+    <TodoStateContext.Provider value={state}>
+      <TodoDispatchContext.Provider value={dispatch}>
+        {children}
+      </TodoDispatchContext.Provider>
+    </TodoStateContext.Provider>
+  );
 };
