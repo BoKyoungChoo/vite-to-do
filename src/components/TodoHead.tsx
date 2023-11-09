@@ -3,15 +3,14 @@ import styled from "styled-components";
 
 import { TodoStateContext } from "../TodoContext";
 
-const week = ["월", "화", "수", "목", "금", "토", "일"];
-
 const TodoHead = () => {
-  const year = new Date().getFullYear();
-  const month = new Date().getMonth() + 1;
-  const date = new Date().getDate();
-  const day = new Date().getDay();
-  const today = `${year}년 ${month}월 ${date}일`;
-  console.log(day);
+  const today = new Date();
+  const dateString = today.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+  });
+  const dayName = today.toLocaleDateString("ko-KR", { weekday: "long" });
 
   const todos = useContext(TodoStateContext);
   const undoneTasks = todos?.filter((todo) => !todo.done);
@@ -19,7 +18,7 @@ const TodoHead = () => {
   return (
     <TodoHeadBlock>
       <h1>
-        {today} <span className="day">{week[day - 1]}요일</span>
+        {dateString} <span className="day">{dayName}</span>
       </h1>
       <div className="tasks-left">할 일 {undoneTasks?.length}개 남음</div>
     </TodoHeadBlock>
