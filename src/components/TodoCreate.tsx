@@ -1,18 +1,46 @@
-import { useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import styled, { css } from "styled-components";
 import { MdAdd } from "react-icons/md";
+import { TodoDispatchContext, TodoNextIdContext } from "../TodoContext";
 
 const TodoCreate = () => {
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
+
+  const dispatch = useContext(TodoDispatchContext);
+  const nextId = useContext(TodoNextIdContext);
+
+  if (!dispatch || !nextId) return <p>useReducer error</p>;
 
   const onToggle = () => setOpen(!open);
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!value) return alert("입력해 주세요");
+
+    dispatch({
+      type: "CREATE",
+      todo: { id: nextId.current, text: value, done: false },
+    });
+    setValue("");
+    setOpen(false);
+    nextId.current += 1;
+  };
 
   return (
     <>
       {open && (
         <InsertFormPositioner>
-          <InsertForm>
-            <Input autoFocus placeholder="할 일을 입력 후, Enter 를 누르세요" />
+          <InsertForm onSubmit={onSubmit}>
+            <Input
+              autoFocus
+              placeholder="할 일을 입력 후, Enter 를 누르세요"
+              defaultValue={value}
+              onChange={onChange}
+            />
           </InsertForm>
         </InsertFormPositioner>
       )}

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
 
@@ -12,6 +12,8 @@ type Props = {
 
 const TodoItem = ({ id, $done, text }: Props) => {
   const dispatch = useContext(TodoDispatchContext);
+
+  if (!dispatch) return <p>useReducer error</p>;
 
   const onToggle = () => dispatch({ type: "TOGGLE", id });
   const onRemove = () => dispatch({ type: "REMOVE", id });
@@ -29,7 +31,7 @@ const TodoItem = ({ id, $done, text }: Props) => {
   );
 };
 
-export default TodoItem;
+export default React.memo(TodoItem);
 
 const Remove = styled.div`
   position: absolute;

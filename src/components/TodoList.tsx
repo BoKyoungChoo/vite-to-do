@@ -10,16 +10,20 @@ const TodoList = () => {
 
   return (
     <TodoListBlock>
-      {todos?.map((todo) => {
-        return (
-          <TodoItem
-            key={todo.id}
-            id={todo.id}
-            text={todo.text}
-            $done={todo.done}
-          />
-        );
-      })}
+      {todos?.length ? (
+        todos.map((todo) => {
+          return (
+            <TodoItem
+              key={todo.id}
+              id={todo.id}
+              text={todo.text}
+              $done={todo.done}
+            />
+          );
+        })
+      ) : (
+        <TodoListNoneText>새로운 할 일을 추가해주세요😊</TodoListNoneText>
+      )}
     </TodoListBlock>
   );
 };
@@ -31,4 +35,10 @@ const TodoListBlock = styled.div`
   padding: 20px 32px;
   padding-bottom: 48px;
   overflow-y: auto;
+`;
+
+const TodoListNoneText = styled.p`
+  display: flex;
+  justify-content: center;
+  opacity: 0.4;
 `;
