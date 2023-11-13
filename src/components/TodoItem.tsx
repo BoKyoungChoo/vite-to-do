@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
 
-import { TodoDispatchContext } from "../TodoContext";
+import { TodoDispatchContext } from "@/TodoContext";
 
 type Props = {
   id: number;

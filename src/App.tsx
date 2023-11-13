@@ -1,8 +1,8 @@
-import { TodoProvider } from "./TodoContext";
-import TodoBox from "./components/TodoBox";
-import TodoCreate from "./components/TodoCreate";
-import TodoHead from "./components/TodoHead";
-import TodoList from "./components/TodoList";
+import { TodoProvider } from "@/TodoContext";
+import TodoBox from "@/components/TodoBox";
+import TodoCreate from "@/components/TodoCreate";
+import TodoHead from "@/components/TodoHead";
+import TodoList from "@/components/TodoList";
 
 function App() {
   return (
@@ -17,7 +17,3 @@ function App() {
 }
 
 export default App;
-
-{
-  // https://react.vlpt.us/mashup-todolist/03-implement.html
-}

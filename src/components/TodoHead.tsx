@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 
-import { TodoStateContext } from "../TodoContext";
+import { TodoStateContext } from "@/TodoContext";
 
 const TodoHead = () => {
   const today = new Date();

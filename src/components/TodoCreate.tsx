@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useState } from "react";
 import styled, { css } from "styled-components";
 import { MdAdd } from "react-icons/md";
-import { TodoDispatchContext, TodoNextIdContext } from "../TodoContext";
+import { TodoDispatchContext, TodoNextIdContext } from "@/TodoContext";
 
 const TodoCreate = () => {
   const [open, setOpen] = useState(false);
